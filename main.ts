@@ -1,6 +1,6 @@
 // passive-aggressive-fridge: one funny passive-aggressive note a smart fridge
 // leaves for its owner. Deterministic, no network, no randomness, no input.
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const LINE =
   "Your 2 a.m. ice cream is logged as 'meal prep.' I sent your fitness app the unedited version.";
@@ -19,3 +19,9 @@ if (LINE.includes("\n") || LINE.includes("\r")) {
 
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", LINE, "utf8");
+
+// Verify what landed on disk is byte-for-byte the validated line: a
+// truncated or altered artifact must fail loudly instead of being judged.
+if (readFileSync("/output/entry.txt", "utf8") !== LINE) {
+  throw new Error("entry.txt on disk does not match the validated line");
+}
