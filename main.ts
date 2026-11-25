@@ -3,7 +3,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const LINE =
-  "Your 2 a.m. ice cream is logged as 'meal prep.' I sent your fitness app the unedited version.";
+  "You labeled the ice cream 'meal prep.' I have labeled the peas 'ice cream' on my shelf. Enjoy your 2 a.m. peas.";
 
 // Gate (sealed scorer): /output/entry.txt must be UTF-8 text of 1 to 200
 // characters, not only white space, a single line. Fail hard if violated.
